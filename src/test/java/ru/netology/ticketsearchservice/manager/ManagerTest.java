@@ -69,9 +69,9 @@ public class ManagerTest {
     Ticket ticket9 = new Ticket(
             9,
             15_600,
-            "UUA",
-            "BHK",
-            290
+            "NBC",
+            "ARH",
+            260
     );
     Ticket ticket10 = new Ticket(
             10,
@@ -90,8 +90,8 @@ public class ManagerTest {
     Ticket ticket12 = new Ticket(
             12,
             28_000,
-            "VKT",
-            "ATH",
+            "NBC",
+            "ARH",
             200
     );
 
@@ -116,7 +116,7 @@ public class ManagerTest {
     public void shouldSearchByFromToWhenOneTicket() {
 
         Ticket[] expected = {ticket6};
-        Ticket[] actual = manager.findAll("ALA", "EGO");
+        Ticket[] actual = manager.findAllByPrice("ALA", "EGO");
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -126,7 +126,7 @@ public class ManagerTest {
     public void shouldSearchByFromToWhenMultipleTicket() {
 
         Ticket[] expected = {ticket7, ticket4, ticket3};
-        Ticket[] actual = manager.findAll("NBC", "EGO");
+        Ticket[] actual = manager.findAllByPrice("NBC", "EGO");
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -136,8 +136,19 @@ public class ManagerTest {
     public void shouldSearchByFromToWhenTwoTicket() {
 
         Ticket[] expected = {ticket11, ticket8};
-        Ticket[] actual = manager.findAll("GUW", "ATH");
+        Ticket[] actual = manager.findAllByPrice("GUW", "ATH");
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+
+    public void shouldSearchByFromToWhenMultipleTicketComparator() {
+
+        Ticket[] expected = {ticket12, ticket9, ticket5};
+        Ticket[] actual = manager.findAll("NBC", "ARH");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
 }
